@@ -5,6 +5,7 @@ RUN apk update && \
     npm install -g storjshare-daemon && \
     rm -rf /var/cache/apk/*
     
+VOLUME /config
 VOLUME /mnt/storj
 
 ENTRYPOINT ["sh","/config/init.sh"]
