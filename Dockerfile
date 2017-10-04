@@ -7,4 +7,4 @@ RUN apk update && \
     
 VOLUME /mnt/storj
 
-ENTRYPOINT ["/config/init.sh"]
+ENTRYPOINT ["sh /config/init.sh"]
