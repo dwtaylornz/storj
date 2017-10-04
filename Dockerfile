@@ -4,4 +4,7 @@ RUN apk update && \
     apk add g++ gcc git make nodejs python && \
     npm install -g storjshare-daemon && \
     rm -rf /var/cache/apk/*
+    
+VOLUME /mnt/storj
+
 ENTRYPOINT ["/config/init.sh"]
