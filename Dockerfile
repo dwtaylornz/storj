@@ -5,7 +5,7 @@ RUN apk update && \
     npm install -g storjshare-daemon && \
     rm -rf /var/cache/apk/*
 
-# ADD init.sh
+# ADD init.sh  
 
 VOLUME /config
 VOLUME /mnt/storj
