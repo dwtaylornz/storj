@@ -1,6 +1,7 @@
 #!/bin/bash
 # start daemon and instances
 # loop status with colours removed from output
+
 storjshare daemon
 storjshare start --config /config/config-1
 storjshare start --config /config/config-2
