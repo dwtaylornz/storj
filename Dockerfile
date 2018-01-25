@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.4
+FROM gliderlabs/alpine:latest
 ENV MAKEFLAGS -j8
 RUN apk update && \
     apk add g++ gcc git make nodejs python && \
