@@ -1,7 +1,7 @@
 FROM gliderlabs/alpine:latest
 ENV MAKEFLAGS -j8
 RUN apk update && \
-    apk add g++ gcc git make nodejs python && \
+    apk add g++ gcc git make nodejs python bash && \
     npm install -g storjshare-daemon && \
     rm -rf /var/cache/apk/*
 
