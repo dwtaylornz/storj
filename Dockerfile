@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 # Set ENV
-ENV NVM_DIR "/root/.nvm"
+ENV NVM_DIR "$HOME/.nvm"
 
 # Prep 
 RUN apt-get update && apt-get dist-upgrade && \ 
@@ -9,7 +9,7 @@ RUN apt-get update && apt-get dist-upgrade && \
     wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.3/install.sh | bash 
 
 # Install nvm 
-RUN "$NVM_DIR/nvm.sh"
+RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Install node LTS
 RUN nvm install --lts
