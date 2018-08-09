@@ -1,21 +1,11 @@
-FROM ubuntu:18.04
+FROM gliderlabs/alpine:3.4
 
-# Set ENV
-ENV NVM_DIR "$HOME/.nvm"
+ENV MAKEFLAGS -j8
 
-# Prep 
-RUN apt-get update && apt-get dist-upgrade && \ 
-    apt-get install -y git python build-essential wget && \
-    wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.3/install.sh | bash 
-
-# Install nvm 
-RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Install node LTS
-RUN nvm install --lts
-
-# Install StorjShare 
-RUN npm install --global --unsafe-perm storjshare-daemon
+RUN apk update && \
+    apk add g++ gcc git make nodejs python && \
+    npm install -g --unsafe-perm storjshare-daemon && \
+    rm -rf /var/cache/apk/*
 
 # ADD init.sh  
 
