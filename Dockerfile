@@ -1,9 +1,17 @@
-FROM ubuntu:16.04
-ENV MAKEFLAGS -j8
-RUN apk update && \
-    apk add g++ gcc git make nodejs python && \
-    npm install -g storjshare-daemon && \
-    rm -rf /var/cache/apk/*
+FROM ubuntu:18.04
+
+# Prep 
+RUN apt-get update && apt-get dist-upgrade && \ 
+    apt-get install -y git python build-essential wget && \
+    wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.3/install.sh | bash 
+
+# Install NVM
+RUN export NVM_DIR="$HOME/.nvm" && \ 
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm && \ 
+    nvm install --lts
+
+# Install StorjShare 
+RUN npm install --global --unsafe-perm storjshare-daemon
 
 # ADD init.sh  
 
