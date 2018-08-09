@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 # Set ENV
-ENV NVM_DIR /root/.nvm"
+ENV NVM_DIR "/root/.nvm"
 
 # Prep 
 RUN apt-get update && apt-get dist-upgrade && \ 
