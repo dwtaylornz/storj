@@ -1,13 +1,21 @@
-FROM gliderlabs/alpine:3.4
+FROM node:alpine
+MAINTAINER Storj Labs (storj.io)
 
-ENV MAKEFLAGS -j8
+RUN apk add --no-cache bash g++ git make openssl-dev python vim && \
+node --version && \
+npm --version && \
+python --version && \
+npm install --global storjshare-daemon && \
+npm cache clean && \
+apk del git openssl-dev python vim && \
+rm -rf /var/cache/apk/* && \
+rm -rf /tmp/npm* && \
+storjshare --version
 
-RUN apk update && \
-    apk add g++ gcc git make nodejs python && \
-    npm install -g --unsafe-perm storjshare-daemon && \
-    rm -rf /var/cache/apk/*
-
-# ADD init.sh  
+EXPOSE 4000
+EXPOSE 4001
+EXPOSE 4002
+EXPOSE 4003
 
 VOLUME /config
 VOLUME /mnt/storj
